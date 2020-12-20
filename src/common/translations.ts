@@ -6,14 +6,12 @@ const formatTranslationMessages = (
 ): { [key: string]: string } => {
   const defaultLocale = 'en';
   const messageKeys = Object.keys(messages);
-  const defaultFormattedMessages =
-    locale !== defaultLocale
-      ? formatTranslationMessages(defaultLocale, enTranslationMessages)
-      : {};
+  const defaultFormattedMessages = locale !== defaultLocale
+    ? formatTranslationMessages(defaultLocale, enTranslationMessages)
+    : {};
 
   return messageKeys.reduce((formattedMessages, key) => {
-    const isDefaultFormattedMessage =
-      !messages[key] && locale !== defaultLocale;
+    const isDefaultFormattedMessage = !messages[key] && locale !== defaultLocale;
     const formattedMessage = isDefaultFormattedMessage
       ? defaultFormattedMessages[key]
       : messages[key];

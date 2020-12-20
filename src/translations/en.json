@@ -1,1 +1,7 @@
-{}
+{
+  "Auth.SignUpScreen.description": "Hi there! Welcome to the site, please tell us about yourself!",
+  "Auth.SignUpScreen.nameLabel": "Name",
+  "Auth.SignUpScreen.submitButton": "Next",
+  "Unknown.Header.logoutButton": "Logout",
+  "Unknown.Header.title": "Fake Social Media Site"
+}
