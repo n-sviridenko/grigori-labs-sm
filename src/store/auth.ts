@@ -101,6 +101,7 @@ export const updateUser = ({
   await firebase.firestore().collection('users').doc(user.id).update({
     color,
   });
+  dispatch(setUser({ ...user, color }));
 };
 
 export const logout = () => async (): Promise<void> => {

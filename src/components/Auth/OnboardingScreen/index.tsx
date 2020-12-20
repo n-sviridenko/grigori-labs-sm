@@ -5,6 +5,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  LinearProgress,
   TextField,
   Typography,
 } from '@material-ui/core';
@@ -25,7 +26,7 @@ const OnboardingScreen: React.FC = () => {
     dispatch(getCurrentUser());
   }, [dispatch]);
   if (!user) {
-    return null;
+    return <LinearProgress />;
   }
 
   return (
