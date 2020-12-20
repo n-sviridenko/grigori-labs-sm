@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
-  color: Yup.string().required('This field is required'),
+  color: Yup.object().required('This field is required'),
 });
 
 export default validationSchema;

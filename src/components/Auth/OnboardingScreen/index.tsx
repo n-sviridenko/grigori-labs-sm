@@ -12,10 +12,12 @@ import {
 import { Formik } from 'formik';
 import { FormattedMessage } from 'react-intl';
 import { useHistory } from 'react-router-dom';
+import { Autocomplete } from '@material-ui/lab';
 import { RootState } from '../../../store';
 import messages from './messages';
 import validationSchema from './validationSchema';
 import { getCurrentUser, updateUser } from '../../../store/auth';
+import colorNames from '../../../common/colorNames';
 
 const OnboardingScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const OnboardingScreen: React.FC = () => {
   return (
     <Card>
       <Formik
-        initialValues={{ color: user.color || '' }}
+        initialValues={{ color: user.color }}
         validationSchema={validationSchema}
         onSubmit={async (values, actions) => {
           try {
@@ -50,14 +52,21 @@ const OnboardingScreen: React.FC = () => {
               <Typography>
                 <FormattedMessage {...messages.description} values={{ name: user.name }} />
               </Typography>
-              <TextField
-                onChange={props.handleChange}
-                onBlur={props.handleBlur}
-                value={props.values.color}
-                name="color"
-                error={!!props.errors.color}
-                helperText={props.errors.color}
-                label={<FormattedMessage {...messages.colorLabel} />}
+              <Autocomplete
+                id="combo-box-demo"
+                options={colorNames}
+                value={props.values.color || null}
+                onChange={(_, value) => props.setFieldValue('color', value)}
+                getOptionLabel={(option) => option.name}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    name="color"
+                    error={!!props.errors.color}
+                    helperText={props.errors.color}
+                    label={<FormattedMessage {...messages.colorLabel} />}
+                  />
+                )}
               />
             </CardContent>
             <CardActions>

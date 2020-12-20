@@ -1,11 +1,12 @@
 import { Dispatch } from 'react';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import firebase from '../common/firebase';
+import { Color } from '../common/types';
 
 type User = {
   id: string;
   name: string;
-  color?: string;
+  color?: Color;
 };
 
 export interface AuthState {
@@ -95,7 +96,7 @@ export const createUser = ({
 export const updateUser = ({
   color,
 }: {
-  color: string;
+  color?: Color;
 }) => async (dispatch: Dispatch<any>, getState: () => any): Promise<void> => {
   const { user } = getState().auth;
   await firebase.firestore().collection('users').doc(user.id).update({

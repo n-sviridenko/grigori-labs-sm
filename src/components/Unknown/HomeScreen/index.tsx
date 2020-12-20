@@ -31,11 +31,11 @@ const HomeScreen: React.FC = () => {
 
   return (
     <Card>
-      <CardContent>
+      <CardContent style={{ backgroundColor: user.color.value }}>
         <Typography gutterBottom>
           <FormattedMessage
             {...messages.description}
-            values={{ name: user.name, color: user.color, strong: boldFormatter }}
+            values={{ name: user.name, color: user.color.name, strong: boldFormatter }}
           />
         </Typography>
         <Typography>
