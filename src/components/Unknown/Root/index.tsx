@@ -7,12 +7,15 @@ import { listenAuthState } from '../../../store/auth';
 
 const Root: React.FC = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state: RootState) => state.auth, shallowEqual);
+  const { auth } = useSelector((state: RootState) => state.auth, shallowEqual);
   useEffect(() => {
     dispatch(listenAuthState());
-  }, [])
+  }, [dispatch]);
 
-  if (!user) {
+  if (auth === undefined) {
+    return null;
+  }
+  if (!auth) {
     return <GuestRoot />;
   }
   return <AuthenticatedRoot />;

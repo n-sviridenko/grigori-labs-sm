@@ -18,7 +18,7 @@ import useStyles from './styles';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state: RootState) => state.auth, shallowEqual);
+  const { auth } = useSelector((state: RootState) => state.auth, shallowEqual);
   const classes = useStyles();
 
   return (
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
         <Typography variant="h6" className={classes.title}>
           <FormattedMessage {...messages.title} />
         </Typography>
-        {user && (
+        {auth && (
           <Button color="inherit" onClick={() => dispatch(logout())}>
             <FormattedMessage {...messages.logoutButton} />
           </Button>
